@@ -16,6 +16,7 @@ if (storeMinutes !== null && storeSeconds !== null) {
     runningMinutes = storeMinutes;
     runningSeconds = storeSeconds;
 }
+
 let intervalId, runningSeconds = 0, runningMinutes = 0;
 let currentState = localStorage.getItem("state") || "idle";
  
@@ -104,4 +105,7 @@ stopButton.addEventListener('click', () => {
     stopButton.classList.add('hidden');
 });
 
-
+// It clears the local storage if the page is reloaded (this is needed because if we reload the page whille being in "paused" or "resumed" state, there is no way we can go back to the "started" state)
+window.onbeforeunload = function() {
+    localStorage.clear();
+};
