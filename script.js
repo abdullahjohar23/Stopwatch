@@ -51,12 +51,13 @@ startButton.addEventListener('click', () => {
 
     intervalId = setInterval(() => {
         if (runningSeconds === 59) {
-            runningSeconds = 0;
             runningMinutes++;
+            runningSeconds = 0;
             displaySeconds.innerText = '00';
-            displayMinutes.innerHTML = runningMinutes;
+            displayMinutes.innerHTML = runningMinutes < 10 ? '0' + runningMinutes : runningMinutes;
         } else {
-            displaySeconds.innerText = ++runningSeconds;
+            runningSeconds++;
+            displaySeconds.innerText = runningSeconds < 10 ? '0' + runningSeconds : runningSeconds;
         }
     }, 1000);
 });
